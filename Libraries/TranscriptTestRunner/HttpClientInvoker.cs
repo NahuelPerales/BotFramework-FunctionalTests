@@ -1,4 +1,5 @@
-﻿using System.Net.Http;
+﻿using System;
+using System.Net.Http;
 
 namespace TranscriptTestRunner
 {
@@ -8,16 +9,17 @@ namespace TranscriptTestRunner
     /// <remarks>
     /// ..
     /// </remarks>
-    public class HttpClientInvoker : HttpClient
+    public class HttpClientInvoker
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="HttpClientInvoker"/> class.
         /// </summary>
+        /// <param name="client">..</param>
         /// <param name="handler">.</param>
-        public HttpClientInvoker(HttpClientHandler handler)
-            : base(handler, false)
+        public HttpClientInvoker(HttpClient client, HttpClientHandler handler)
         {
-            Handler = handler;
+            HttpClient = client;
+            HttpClientHandler = handler;
         }
 
         /// <summary>
@@ -26,6 +28,14 @@ namespace TranscriptTestRunner
         /// <value>
         /// .
         /// </value>
-        public HttpClientHandler Handler { get; }
+        public HttpClient HttpClient { get; }
+
+        /// <summary>
+        /// Gets.
+        /// </summary>
+        /// <value>
+        /// .
+        /// </value>
+        public HttpClientHandler HttpClientHandler { get; }
     }
 }

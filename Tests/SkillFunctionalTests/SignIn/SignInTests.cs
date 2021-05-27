@@ -115,31 +115,3 @@ namespace SkillFunctionalTests.SignIn
         }
     }
 }
-
-[SuppressMessage("StyleCop.CSharp.MaintainabilityRules", "SA1402:File may only contain a single type", Justification = "HttpClientListener instatiation is only used for this class script.")]
-public class TestFixture : IDisposable
-{
-    public TestFixture()
-    {
-        var cookieContainer = new CookieContainer();
-        var handler = new HttpClientHandler
-        {
-            AllowAutoRedirect = false,
-            CookieContainer = cookieContainer
-        };
-
-        // We have a sign in url, which will produce multiple HTTP 302 for redirects
-        // This will path 
-        //      token service -> other services -> auth provider -> token service (post sign in)-> response with token
-        // When we receive the post sign in redirect, we add the cookie passed in the session info
-        // to test enhanced authentication. This in the scenarios happens by itself since browsers do this for us.
-        HttpClientInvoker = new HttpClientInvoker(handler);
-    }
-
-    public HttpClientInvoker HttpClientInvoker { get; }
-
-    public void Dispose()
-    {
-        HttpClientInvoker.Dispose();
-    }
-}

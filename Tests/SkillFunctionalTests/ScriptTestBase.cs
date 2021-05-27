@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Net.Http;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using SkillFunctionalTests.Common;
 using TranscriptTestRunner.TestClients;
@@ -43,7 +44,5 @@ namespace SkillFunctionalTests
         public ILogger Logger { get; }
 
         public int TestRequestTimeout { get; }
-
-        protected static HttpClient HttpClient { get; } = new HttpClient();
     }
 }

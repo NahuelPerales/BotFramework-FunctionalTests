@@ -20,28 +20,32 @@ namespace TranscriptTestRunner.Authentication
         /// <summary>
         /// Initializes a new instance of the <see cref="TestClientAuthentication"/> class.
         /// </summary>
-        /// <param name="httpClientListener">.</param>
-        public TestClientAuthentication(HttpClientInvoker httpClientListener = null)
+        /// <param name="httpClientInvoker">.</param>
+        public TestClientAuthentication(HttpClientInvoker httpClientInvoker = null)
         {
-            if (httpClientListener != null)
+            if (httpClientInvoker != null)
             {
-                HttpClientInvoker = httpClientListener;
+                HttpClientInvoker = httpClientInvoker;
             }
             else
             {
-                var cookieContainer = new CookieContainer();
-                using var handler = new HttpClientHandler
-                {
-                    AllowAutoRedirect = false,
-                    CookieContainer = cookieContainer
-                };
+                HttpClientInvoker = null;
 
-                // We have a sign in url, which will produce multiple HTTP 302 for redirects
-                // This will path 
-                //      token service -> other services -> auth provider -> token service (post sign in)-> response with token
-                // When we receive the post sign in redirect, we add the cookie passed in the session info
-                // to test enhanced authentication. This in the scenarios happens by itself since browsers do this for us.
-                HttpClientInvoker = new HttpClientInvoker(handler);
+                //var cookieContainer = new CookieContainer();
+                //using var handler = new HttpClientHandler
+                //{
+                //    AllowAutoRedirect = false,
+                //    CookieContainer = cookieContainer
+                //};
+
+                //// We have a sign in url, which will produce multiple HTTP 302 for redirects
+                //// This will path 
+                ////      token service -> other services -> auth provider -> token service (post sign in)-> response with token
+                //// When we receive the post sign in redirect, we add the cookie passed in the session info
+                //// to test enhanced authentication. This in the scenarios happens by itself since browsers do this for us.
+                //var httpClientFactory = clientBuilder.GetService<IHttpClientFactory>();
+
+                //var client = httpClientFactory.CreateClient();
             }
         }
 
@@ -62,11 +66,11 @@ namespace TranscriptTestRunner.Authentication
         /// <returns>True, if SignIn is successful; otherwise false.</returns>
         public async Task<bool> SignInAsync(string url, KeyValuePair<string, string> originHeader, SessionInfo sessionInfo)
         {
-            HttpClientInvoker.DefaultRequestHeaders.Add(originHeader.Key, originHeader.Value);
+            HttpClientInvoker.HttpClient.DefaultRequestHeaders.Add(originHeader.Key, originHeader.Value);
 
             while (!string.IsNullOrEmpty(url))
             {
-                var response = await HttpClientInvoker.GetAsync(new Uri(url)).ConfigureAwait(false);
+                var response = await HttpClientInvoker.HttpClient.GetAsync(new Uri(url)).ConfigureAwait(false);
                 var text = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
 
                 url = response.StatusCode == HttpStatusCode.Redirect
@@ -91,7 +95,7 @@ namespace TranscriptTestRunner.Authentication
                 if (url.StartsWith("https://token.botframework.com/api/oauth/PostSignInCallback", StringComparison.Ordinal))
                 {
                     url += $"&code_challenge={sessionInfo.SessionId}";
-                    HttpClientInvoker.Handler.CookieContainer.Add(sessionInfo.Cookie);
+                    HttpClientInvoker.HttpClientHandler.CookieContainer.Add(sessionInfo.Cookie);
                 }
             }
 
