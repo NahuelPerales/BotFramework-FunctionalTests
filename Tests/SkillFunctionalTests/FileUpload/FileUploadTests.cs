@@ -18,13 +18,15 @@ using Xunit.Abstractions;
 namespace SkillFunctionalTests.FileUpload
 {
     [Trait("TestCategory", "FileUpload")]
-    public class FileUploadTests : ScriptTestBase
+    public class FileUploadTests : ScriptTestBase, IClassFixture<TestFixture>
     {
         private readonly string _testScriptsFolder = Directory.GetCurrentDirectory() + @"/FileUpload/TestScripts";
+        private readonly TestFixture _testFixture;
 
-        public FileUploadTests(ITestOutputHelper output)
+        public FileUploadTests(ITestOutputHelper output, TestFixture testFixture)
             : base(output)
         {
+            _testFixture = testFixture;
         }
 
         public static IEnumerable<object[]> TestCases()
@@ -80,7 +82,7 @@ namespace SkillFunctionalTests.FileUpload
             Logger.LogInformation(JsonConvert.SerializeObject(testCase, Formatting.Indented));
 
             var options = TestClientOptions[testCase.HostBot];
-            var runner = new XUnitTestRunner(new TestClientFactory(testCase.ChannelId, options, Logger).GetTestClient(), TestRequestTimeout, Logger);
+            var runner = new XUnitTestRunner(new TestClientFactory(testCase.ChannelId, options, Logger, _testFixture.HttpClientInvoker).GetTestClient(), TestRequestTimeout, Logger);
 
             // Execute the first part of the conversation.
             var testParams = new Dictionary<string, string>

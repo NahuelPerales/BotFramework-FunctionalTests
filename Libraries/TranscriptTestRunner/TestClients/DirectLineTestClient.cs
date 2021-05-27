@@ -60,6 +60,7 @@ namespace TranscriptTestRunner.TestClients
         private readonly ILogger _logger;
         private readonly DirectLineTestClientOptions _options;
         private readonly TestClientAuthentication _clientAuthentication;
+        private readonly HttpClientInvoker _httpClientInvoker;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="DirectLineTestClient"/> class.
@@ -84,6 +85,17 @@ namespace TranscriptTestRunner.TestClients
             _logger = logger ?? NullLogger.Instance;
 
             _clientAuthentication = new TestClientAuthentication(httpClientInvoker);
+            _httpClientInvoker = httpClientInvoker;
+
+            var tokenInfo = GetDirectLineTokenAsync().Result;
+
+            // Create directLine client from token and initialize settings.
+            _dlClient = new DirectLineClientTest(tokenInfo.Token, httpClientInvoker.HttpClient);
+            _dlClient.SetRetryPolicy(new RetryPolicy(new HttpStatusCodeErrorDetectionStrategy(), 0));
+            _dlClient.HttpClient.DefaultRequestHeaders.Add(_originHeader.Key, _originHeader.Value);
+
+            //Initialize web socket client and listener
+            _webSocketClient = new ClientWebSocket();
         }
 
         /// <inheritdoc/>
@@ -218,30 +230,21 @@ namespace TranscriptTestRunner.TestClients
                 {
                     _logger.LogDebug($"{DateTime.Now} Attempting to start conversation (try {tryCount} of {maxTries}).");
 
-                    // Obtain a token using the Direct Line secret
-                    var tokenInfo = await GetDirectLineTokenAsync().ConfigureAwait(false);
-
-                    // Ensure we dispose the client after the retries (this helps us make sure we get a new conversation ID on each try)
-                    _dlClient?.Dispose();
-
-                    // Create directLine client from token and initialize settings.
-                    _dlClient = new DirectLineClient(tokenInfo.Token);
-                    _dlClient.SetRetryPolicy(new RetryPolicy(new HttpStatusCodeErrorDetectionStrategy(), 0));
+                    //// Ensure we dispose the client after the retries (this helps us make sure we get a new conversation ID on each try)
+                    //_dlClient?.Dispose();
 
                     // From now on, we'll add an Origin header in directLine calls, with 
                     // the trusted origin we sent when acquiring the token as value.
-                    _dlClient.HttpClient.DefaultRequestHeaders.Add(_originHeader.Key, _originHeader.Value);
+                    // Obtain a token using the Direct Line secret
 
                     // Start the conversation now (this will send a ConversationUpdate to the bot)
                     _conversation = await _dlClient.Conversations.StartConversationAsync(startConversationCts.Token).ConfigureAwait(false);
                     _logger.LogDebug($"{DateTime.Now} Got conversation ID {_conversation.ConversationId} from direct line client.");
                     _logger.LogTrace($"{DateTime.Now} {Environment.NewLine}{JsonConvert.SerializeObject(_conversation, Formatting.Indented)}");
 
-                    // Ensure we dispose the _webSocketClient after the retries.
-                    _webSocketClient?.Dispose();
+                    //// Ensure we dispose the _webSocketClient after the retries.
+                    //_webSocketClient?.Dispose();
 
-                    //Initialize web socket client and listener
-                    _webSocketClient = new ClientWebSocket();
                     await _webSocketClient.ConnectAsync(new Uri(_conversation.StreamUrl), startConversationCts.Token).ConfigureAwait(false);
 
                     _logger.LogDebug($"{DateTime.Now} Connected to websocket, state is {_webSocketClient.State}.");
@@ -414,7 +417,6 @@ namespace TranscriptTestRunner.TestClients
         /// <returns>A <see cref="TokenInfo"/> instance.</returns>
         private async Task<TokenInfo> GetDirectLineTokenAsync()
         {
-            using var client = new HttpClient();
             using var request = new HttpRequestMessage(HttpMethod.Post, "https://directline.botframework.com/v3/directline/tokens/generate");
             request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", _options.DirectLineSecret);
             request.Content = new StringContent(
@@ -425,7 +427,7 @@ namespace TranscriptTestRunner.TestClients
                 }), Encoding.UTF8,
                 "application/json");
 
-            using var response = await client.SendAsync(request).ConfigureAwait(false);
+            using var response = await _httpClientInvoker.HttpClient.SendAsync(request).ConfigureAwait(false);
             try
             {
                 response.EnsureSuccessStatusCode();

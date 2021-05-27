@@ -17,13 +17,15 @@ using Xunit.Abstractions;
 namespace SkillFunctionalTests.MessageWithAttachment
 {
     [Trait("TestCategory", "Attachments")]
-    public class MessageWithAttachmentTests : ScriptTestBase
+    public class MessageWithAttachmentTests : ScriptTestBase, IClassFixture<TestFixture>
     {
         private readonly string _testScriptsFolder = Directory.GetCurrentDirectory() + @"/MessageWithAttachment/TestScripts";
+        private readonly TestFixture _testFixture;
 
-        public MessageWithAttachmentTests(ITestOutputHelper output)
+        public MessageWithAttachmentTests(ITestOutputHelper output, TestFixture testFixture)
             : base(output)
         {
+            _testFixture = testFixture;
         }
 
         public static IEnumerable<object[]> TestCases()
@@ -77,7 +79,7 @@ namespace SkillFunctionalTests.MessageWithAttachment
             Logger.LogInformation(JsonConvert.SerializeObject(testCase, Formatting.Indented));
 
             var options = TestClientOptions[testCase.HostBot];
-            var runner = new XUnitTestRunner(new TestClientFactory(testCase.ChannelId, options, Logger).GetTestClient(), TestRequestTimeout, Logger);
+            var runner = new XUnitTestRunner(new TestClientFactory(testCase.ChannelId, options, Logger, _testFixture.HttpClientInvoker).GetTestClient(), TestRequestTimeout, Logger);
 
             var testParams = new Dictionary<string, string>
             {

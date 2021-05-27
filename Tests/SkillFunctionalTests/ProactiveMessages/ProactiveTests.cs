@@ -18,7 +18,7 @@ using Xunit.Abstractions;
 namespace SkillFunctionalTests.ProactiveMessages
 {
     [Trait("TestCategory", "ProactiveMessages")]
-    public class ProactiveTests : ScriptTestBase
+    public class ProactiveTests : ScriptTestBase, IClassFixture<TestFixture>
     {
         private readonly string _testScriptsFolder = Directory.GetCurrentDirectory() + @"/ProactiveMessages/TestScripts";
         private readonly TestFixture _testFixture;
@@ -83,7 +83,7 @@ namespace SkillFunctionalTests.ProactiveMessages
             Logger.LogInformation(JsonConvert.SerializeObject(testCase, Formatting.Indented));
 
             var options = TestClientOptions[testCase.HostBot];
-            var runner = new XUnitTestRunner(new TestClientFactory(testCase.ChannelId, options, Logger).GetTestClient(), TestRequestTimeout, Logger);
+            var runner = new XUnitTestRunner(new TestClientFactory(testCase.ChannelId, options, Logger, _testFixture.HttpClientInvoker).GetTestClient(), TestRequestTimeout, Logger);
 
             var testParamsStart = new Dictionary<string, string>
             {

@@ -17,13 +17,15 @@ using Xunit.Abstractions;
 namespace SkillFunctionalTests.SingleTurn
 {
     [Trait("TestCategory", "SingleTurn")]
-    public class EchoTests : ScriptTestBase
+    public class EchoTests : ScriptTestBase, IClassFixture<TestFixture>
     {
         private readonly string _testScriptsFolder = Directory.GetCurrentDirectory() + @"/SingleTurn/TestScripts";
+        private readonly TestFixture _testFixture;
 
-        public EchoTests(ITestOutputHelper output)
+        public EchoTests(ITestOutputHelper output, TestFixture testFixture)
             : base(output)
         {
+            _testFixture = testFixture;
         }
 
         public static IEnumerable<object[]> TestCases()
@@ -91,7 +93,7 @@ namespace SkillFunctionalTests.SingleTurn
 
             var options = TestClientOptions[testCase.HostBot];
 
-            var runner = new XUnitTestRunner(new TestClientFactory(testCase.ChannelId, options, Logger).GetTestClient(), TestRequestTimeout, Logger);
+            var runner = new XUnitTestRunner(new TestClientFactory(testCase.ChannelId, options, Logger, _testFixture.HttpClientInvoker).GetTestClient(), TestRequestTimeout, Logger);
 
             var testParams = new Dictionary<string, string>
             {
