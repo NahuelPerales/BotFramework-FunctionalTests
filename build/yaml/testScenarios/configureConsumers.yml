@@ -180,7 +180,7 @@ steps:
 
             if ($groups.Value -contains $bot.resourceGroup) {
               # $exists = -not (az resource wait --exists --resource-group $bot.resourceGroup --name $bot.resourceBotName --resource-type Microsoft.Web/sites --interval 1 --timeout 6);
-              $exists = True;
+              $exists = $true;
 
               if ($exists) {
                 Write-Host $(AddTimeStamp -text "$($bot.key): Resource '$($bot.resourceBotName)' found.");
