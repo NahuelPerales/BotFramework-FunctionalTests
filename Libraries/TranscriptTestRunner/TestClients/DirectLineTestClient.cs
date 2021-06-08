@@ -357,15 +357,24 @@ namespace TranscriptTestRunner.TestClients
             {
                 _logger.LogDebug($"{DateTime.Now} Listening to web socket....");
                 rcvResult = await _webSocketClient.ReceiveAsync(rcvBuffer, cancellationToken.Token).ConfigureAwait(false);
-                _logger.LogTrace($"{DateTime.Now} Received data from socket.{Environment.NewLine}Buffer offset: {rcvBuffer.Offset}.{Environment.NewLine}Buffer count: {rcvBuffer.Count}{Environment.NewLine}{JsonConvert.SerializeObject(rcvResult, Formatting.Indented)}");
+                try
+                {
+                    _logger.LogTrace($"{DateTime.Now} Received data from socket.{Environment.NewLine}Buffer offset: {rcvBuffer.Offset}.{Environment.NewLine}Buffer count: {rcvBuffer.Count}{Environment.NewLine}{JsonConvert.SerializeObject(rcvResult, Formatting.Indented)}");
 
-                if (rcvBuffer.Array != null)
-                {
-                    rcvMsg.Append(Encoding.UTF8.GetString(rcvBuffer.Array, rcvBuffer.Offset, rcvResult.Count));
+                    if (rcvBuffer.Array != null)
+                    {
+                        rcvMsg.Append(Encoding.UTF8.GetString(rcvBuffer.Array, rcvBuffer.Offset, rcvResult.Count));
+                    }
+                    else
+                    {
+                        _logger.LogDebug($"{DateTime.Now} Received data but the array was empty.");
+                    }
                 }
-                else
+                catch (AggregateException)
                 {
-                    _logger.LogDebug($"{DateTime.Now} Received data but the array was empty.");
+                    _logger.LogDebug($"{DateTime.Now} Catched exception in while");
+
+                    // Do nothing
                 }
             } 
             while (!rcvResult.EndOfMessage);
@@ -381,6 +390,8 @@ namespace TranscriptTestRunner.TestClients
                 }
                 catch (AggregateException)
                 {
+                    _logger.LogDebug($"{DateTime.Now} Catched exception");
+
                     // Do nothing
                 }
             }
