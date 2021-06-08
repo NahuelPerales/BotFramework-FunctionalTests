@@ -371,8 +371,19 @@ namespace TranscriptTestRunner.TestClients
             while (!rcvResult.EndOfMessage);
 
             var message = rcvMsg.ToString();
-            _logger.LogDebug($"{DateTime.Now} Activity received");
-            _logger.LogDebug(message);
+            for (var i = 1; i < 3; i++)
+            {
+                try
+                {
+                    _logger.LogDebug($"{DateTime.Now} Activity received");
+                    _logger.LogDebug(message);
+                    break;
+                }
+                catch (AggregateException)
+                {
+                    // Do nothing
+                }
+            }
 
             var activitySet = JsonConvert.DeserializeObject<ActivitySet>(message);
             return activitySet;
