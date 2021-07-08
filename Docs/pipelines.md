@@ -91,13 +91,16 @@ These are the available registry options for each bot language:
   - Pypi
   - Test.Pypi
 
-Supported Version inputs are:
 
-| Name                 | Description                                                                                                                 | Example |
-| -------------------- | --------------------------------------------------------------------------------------------------------------------------- | ------- |
-| **LATEST**           | (default) The latest published version available in the chosen registry, it will search for `stable` or `preview` versions. | LATEST  |
-| **STABLE**           | The latest stable published version available in the chosen registry, it only will search for `stable` versions.            | STABLE  |
-| **Specific Version** | Version format based on how it's published in the chosen registry.                                                          | 4.13.0  |
+The version parameters support the following options.
+
+| Name                 | Description                                                                                                               | Example                     |
+| -------------------- | ------------------------------------------------------------------------------------------------------------------------- | --------------------------- |
+| **LATEST**           | (default) The latest published version available in the chosen registry, it will look for `stable` or `preview` versions. | LATEST                      |
+| **STABLE**           | The latest stable published version available in the chosen registry, it will look only for `stable` versions.            | STABLE                      |
+| **Specific Version** | Version format based on how it's published in the chosen registry.                                                        | `4.14.0.20210416.dev236130` |
+
+Note: The artifact feed doesn't contain stable versions for DotNet packages.
 
 ## 03 - Run Test Scenarios Pipeline
 
