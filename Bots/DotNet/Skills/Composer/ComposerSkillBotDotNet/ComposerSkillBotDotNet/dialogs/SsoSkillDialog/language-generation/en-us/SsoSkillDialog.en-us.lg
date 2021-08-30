@@ -48,4 +48,4 @@
 ]
 
 # SendActivity_XHYEM8_text()
-- Here is your current SSO token: ${user.token.token}
+- Here is your current SSO token: ${user.token}

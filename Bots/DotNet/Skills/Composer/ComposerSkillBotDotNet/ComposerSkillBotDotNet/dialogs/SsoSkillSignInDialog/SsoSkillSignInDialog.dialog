@@ -35,7 +35,7 @@
           "$designer": {
             "id": "elvAxZ"
           },
-          "condition": "=user.token.token != null",
+          "condition": "=user.token != null",
           "actions": [
             {
               "$kind": "Microsoft.SendActivity",

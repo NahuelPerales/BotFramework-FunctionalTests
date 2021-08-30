@@ -97,6 +97,14 @@
               "value": "Sso",
               "actions": [
                 {
+                  "$kind": "Microsoft.SetProperty",
+                  "$designer": {
+                    "id": "uTDOHi"
+                  },
+                  "property": "user.token",
+                  "value": "=turn.activity.token"
+                },
+                {
                   "$kind": "Microsoft.BeginDialog",
                   "$designer": {
                     "id": "tQ6oU7"
