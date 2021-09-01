@@ -97,6 +97,16 @@
               "value": "Sso",
               "actions": [
                 {
+                  "$kind": "Microsoft.OAuthInput",
+                  "$designer": {
+                    "id": "AiASQV"
+                  },
+                  "timeout": 900000,
+                  "property": "turn.token",
+                  "maxTurnCount": 3,
+                  "allowInterruptions": true
+                },
+                {
                   "$kind": "Microsoft.SetProperty",
                   "$designer": {
                     "id": "uTDOHi"
@@ -138,6 +148,32 @@
                   "activityProcessed": true,
                   "dialog": "CallEchoSkill",
                   "options": {}
+                }
+              ]
+            },
+            {
+              "value": "Delete",
+              "actions": [
+                {
+                  "$kind": "Microsoft.BeginDialog",
+                  "$designer": {
+                    "id": "xxKIQ2"
+                  },
+                  "activityProcessed": true,
+                  "dialog": "DeleteDialog"
+                }
+              ]
+            },
+            {
+              "value": "Update",
+              "actions": [
+                {
+                  "$kind": "Microsoft.BeginDialog",
+                  "$designer": {
+                    "id": "oLQRy6"
+                  },
+                  "activityProcessed": true,
+                  "dialog": "UpdateDialog"
                 }
               ]
             }
