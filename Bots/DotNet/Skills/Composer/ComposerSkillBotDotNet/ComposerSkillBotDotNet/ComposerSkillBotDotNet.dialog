@@ -97,24 +97,6 @@
               "value": "Sso",
               "actions": [
                 {
-                  "$kind": "Microsoft.OAuthInput",
-                  "$designer": {
-                    "id": "AiASQV"
-                  },
-                  "timeout": 900000,
-                  "property": "turn.token",
-                  "maxTurnCount": 3,
-                  "allowInterruptions": true
-                },
-                {
-                  "$kind": "Microsoft.SetProperty",
-                  "$designer": {
-                    "id": "uTDOHi"
-                  },
-                  "property": "user.token",
-                  "value": "=turn.activity.token"
-                },
-                {
                   "$kind": "Microsoft.BeginDialog",
                   "$designer": {
                     "id": "tQ6oU7"

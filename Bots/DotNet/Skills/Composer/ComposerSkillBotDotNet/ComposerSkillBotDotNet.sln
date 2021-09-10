@@ -6,6 +6,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ComposerSkillBotDotNet", "C
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DownloadFileDialog", "DownloadFileDialog\DownloadFileDialog.csproj", "{E9CCB3D0-A2E1-4C73-A8E6-C2BF57B3D417}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GetUserTokenDialog", "GetTokenDialog\GetUserTokenDialog.csproj", "{4D0A5194-4725-4325-A1D4-F4383D4525D6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -20,6 +22,10 @@ Global
 		{E9CCB3D0-A2E1-4C73-A8E6-C2BF57B3D417}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E9CCB3D0-A2E1-4C73-A8E6-C2BF57B3D417}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E9CCB3D0-A2E1-4C73-A8E6-C2BF57B3D417}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4D0A5194-4725-4325-A1D4-F4383D4525D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4D0A5194-4725-4325-A1D4-F4383D4525D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4D0A5194-4725-4325-A1D4-F4383D4525D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4D0A5194-4725-4325-A1D4-F4383D4525D6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

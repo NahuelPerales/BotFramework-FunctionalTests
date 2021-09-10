@@ -11,6 +11,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Bot.Builder.Community.Components.TokenExchangeSkillHandler" Version="4.13.2" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.8" />
     <PackageReference Include="Microsoft.Bot.Builder.AI.Luis" Version="4.14.1" />
     <PackageReference Include="Microsoft.Bot.Builder.AI.QnA" Version="4.14.1" />
@@ -18,6 +19,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DownloadFileDialog\DownloadFileDialog.csproj" />
+    <ProjectReference Include="..\GetTokenDialog\GetUserTokenDialog.csproj" />
   </ItemGroup>
   <ItemGroup>
     <None Update="media\architecture-resize.png">
