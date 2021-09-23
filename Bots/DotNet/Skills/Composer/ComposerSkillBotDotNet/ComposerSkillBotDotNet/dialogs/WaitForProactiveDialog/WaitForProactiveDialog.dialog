@@ -43,7 +43,7 @@
           "$designer": {
             "id": "nHFXkL"
           },
-          "condition": "=turn.activity.name == continueConversation",
+          "condition": "=equals(turn.activity.name, continueConversation)",
           "actions": [
             {
               "$kind": "Microsoft.SendActivity",

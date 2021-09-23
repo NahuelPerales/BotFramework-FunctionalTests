@@ -6,7 +6,7 @@
 ]
 
 # SendActivity_ZZmpc5_text()
-- Navigate to http://localhost:3980/api/notify?user=${turn.activity.from.id} to proactively message the user.
+- Navigate to ${user.HostUrl}/api/notify?user=${turn.activity.from.id} to proactively message the user.
 # SendActivity_g1V2kh()
 [Activity
     Text = ${SendActivity_g1V2kh_text()}

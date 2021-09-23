@@ -10,7 +10,7 @@
     subtitle = Microsoft Bot Framework
     text = Build and connect intelligent bots to interact with your users naturally wherever they are, from text/sms to Skype, Slack, Office 365 mail and other popular services.
     image = ${CardImageTemplate('https://sec.ch9.ms/ch9/7ff5/e07cfef0-aa3b-40bb-9baa-7c9ef8ff7ff5/buildreactionbotframework_960.jpg')}
-    buttons = ${CardActionTemplate('openUrl', 'Get started', 'Get started', 'https://docs.microsoft.com/bot-framework')}
+    buttons = ${CardActionTemplate('openUrl', 'Get Started', 'Get Started', 'https://docs.microsoft.com/bot-framework')}
 ]
 
 # CardActionTemplate(type, title, text, value)
@@ -27,7 +27,7 @@
     subtitle = Microsoft Bot Framework
     text = Build and connect intelligent bots to interact with your users naturally wherever they are, from text/sms to Skype, Slack, Office 365 mail and other popular services.
     image = ${CardImageTemplate('https://sec.ch9.ms/ch9/7ff5/e07cfef0-aa3b-40bb-9baa-7c9ef8ff7ff5/buildreactionbotframework_960.jpg')}
-    buttons = ${CardActionTemplate('openUrl', 'Get Started', 'Get started', 'https://docs.microsoft.com/bot-framework')}
+    buttons = ${CardActionTemplate('openUrl', 'Get Started', 'Get Started', 'https://docs.microsoft.com/bot-framework')}
 ]
 
 # ReceiptCard
@@ -93,7 +93,7 @@
 # AudioCard
 [AudioCard
     title = Audio Card
-    media = http://localhost:3980/api/music
+    media = ${user.HostUrl}/api/music
     autoloop = true
 ]
 

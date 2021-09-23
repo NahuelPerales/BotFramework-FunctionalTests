@@ -17,14 +17,6 @@
       },
       "actions": [
         {
-          "$kind": "Microsoft.SetProperty",
-          "$designer": {
-            "id": "l3riVS"
-          },
-          "property": "user.HostUrl",
-          "value": "=attachments.GetHostUrl(uriScheme(settings.skillHostEndpoint), uriHost(settings.skillHostEndpoint), uriPort(settings.skillHostEndpoint))"
-        },
-        {
           "$kind": "Microsoft.ChoiceInput",
           "$designer": {
             "id": "uYVf93"

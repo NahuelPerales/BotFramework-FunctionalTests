@@ -31,6 +31,14 @@
       },
       "actions": [
         {
+          "$kind": "Microsoft.SetProperty",
+          "$designer": {
+            "id": "z2JNUs"
+          },
+          "value": "=router.GetHostUrl(settings.skillHostEndpoint)",
+          "property": "user.HostUrl"
+        },
+        {
           "$kind": "Microsoft.SwitchCondition",
           "$designer": {
             "id": "QWep3m"

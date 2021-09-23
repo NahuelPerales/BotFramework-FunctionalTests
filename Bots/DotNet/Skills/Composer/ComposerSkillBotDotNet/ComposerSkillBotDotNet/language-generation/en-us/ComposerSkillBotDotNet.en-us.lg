@@ -1,4 +1,13 @@
 [import](common.lg)
+> !# @strict = false
+> !# @namespace = router
+> !# @exports = GetHostUrl
+
+#GetHostUrl(url)
+- IF:${contains(['localhost', '127.0.0.1'], uriHost(url))}
+    - ${concat(`${uriScheme(url)}://localhost:${uriPort(url)}`)}
+- ELSE:
+    - ${concat(`${uriScheme(url)}://${uriHost(url)}`)}
 
 # SendActivity_DidNotUnderstand()
 [Activity

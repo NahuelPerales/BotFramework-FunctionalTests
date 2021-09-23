@@ -35,23 +35,23 @@
           "$designer": {
             "id": "elvAxZ"
           },
-          "condition": "=user.token != null",
+          "condition": "=empty(user.token)",
           "actions": [
-            {
-              "$kind": "Microsoft.SendActivity",
-              "$designer": {
-                "id": "9kZTzY"
-              },
-              "activity": "${SendActivity_9kZTzY()}"
-            }
-          ],
-          "elseActions": [
             {
               "$kind": "Microsoft.SendActivity",
               "$designer": {
                 "id": "CD2CgY"
               },
               "activity": "${SendActivity_CD2CgY()}"
+            }
+          ],
+          "elseActions": [
+            {
+              "$kind": "Microsoft.SendActivity",
+              "$designer": {
+                "id": "9kZTzY"
+              },
+              "activity": "${SendActivity_9kZTzY()}"
             }
           ]
         },

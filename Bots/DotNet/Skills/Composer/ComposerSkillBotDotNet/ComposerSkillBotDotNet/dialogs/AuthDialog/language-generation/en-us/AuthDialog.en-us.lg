@@ -41,4 +41,4 @@
 ]
 
 # SendActivity_ooIaKS_text()
-- This is your token: ${dialog.token.token}
+- Here is your token: ${dialog.token.token}

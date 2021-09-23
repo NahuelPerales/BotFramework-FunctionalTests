@@ -34,8 +34,23 @@
           "$designer": {
             "id": "sqQoGh"
           },
-          "condition": "=dialog.token.token != null",
           "actions": [
+            {
+              "$kind": "Microsoft.SendActivity",
+              "$designer": {
+                "id": "OIqm35"
+              },
+              "activity": "${SendActivity_OIqm35()}"
+            },
+            {
+              "$kind": "Microsoft.RepeatDialog",
+              "$designer": {
+                "id": "Geey1y"
+              },
+              "activityProcessed": true
+            }
+          ],
+          "elseActions": [
             {
               "$kind": "Microsoft.SendActivity",
               "$designer": {
@@ -96,22 +111,7 @@
               "activity": "${SendActivity_oj6Ert()}"
             }
           ],
-          "elseActions": [
-            {
-              "$kind": "Microsoft.SendActivity",
-              "$designer": {
-                "id": "OIqm35"
-              },
-              "activity": "${SendActivity_OIqm35()}"
-            },
-            {
-              "$kind": "Microsoft.RepeatDialog",
-              "$designer": {
-                "id": "Geey1y"
-              },
-              "activityProcessed": true
-            }
-          ]
+          "condition": "=empty(dialog.token.token)"
         },
         {
           "$kind": "Microsoft.EndDialog",

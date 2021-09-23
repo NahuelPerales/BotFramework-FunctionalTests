@@ -28,7 +28,7 @@
           "$designer": {
             "id": "6nE0Cp"
           },
-          "condition": "user.token == null",
+          "condition": "=empty(user.token)",
           "actions": [
             {
               "$kind": "Microsoft.ChoiceInput",
@@ -150,7 +150,7 @@
                   "$designer": {
                     "id": "GHNviq"
                   },
-                  "condition": "=user.token == null",
+                  "condition": "=empty(user.token)",
                   "actions": [
                     {
                       "$kind": "Microsoft.SendActivity",

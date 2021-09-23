@@ -1,16 +1,10 @@
 [import](common.lg)
 > !# @strict = false
 > !# @namespace = attachments
-> !# @exports = GetFile, GetHostUrl
+> !# @exports = GetFile
 
 # GetFile()
-- ${fromFile('../../../../media/architecture-resize.png', 'binary')}
-
-#GetHostUrl(schema, host, port)
-- IF:${startsWith(host, '127.0.0.')}
-    - ${concat(`${schema}://localhost:${port}`)}
-- ELSE:
-    - ${concat(`${schema}://${host}:${port}`)}
+- ${fromFile('../../../../wwwwroot/images/architecture-resize.png', 'binary')}
 
 # ChoiceInput_Prompt_uYVf93()
 [Activity
