@@ -71,6 +71,7 @@ stages:
   - template: runScenario.yml
     parameters:
       appIds:
+        ComposerSkillBotDotNet: "$(BFFNCOMPOSERSKILLBOTDOTNETAPPID)"
         EchoSkillBotComposerDotNet: "$(BFFNECHOSKILLBOTCOMPOSERDOTNETAPPID)"
         EchoSkillBotDotNet: "$(BFFNECHOSKILLBOTDOTNETAPPID)"
         EchoSkillBotDotNet21: "$(BFFNECHOSKILLBOTDOTNET21APPID)"
