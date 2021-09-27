@@ -48,12 +48,12 @@ namespace SkillFunctionalTests.ProactiveMessages
 
             var targetSkills = new List<string>
             {
+                SkillBotNames.ComposerSkillBotDotNet,
                 SkillBotNames.WaterfallSkillBotDotNet,
-                SkillBotNames.WaterfallSkillBotPython,
+                SkillBotNames.WaterfallSkillBotPython
 
-                // TODO: Enable these when the ports to JS, and composer are ready
-                //SkillBotNames.WaterfallSkillBotJS,
-                //SkillBotNames.ComposerSkillBotDotNet
+                // TODO: Enable this when the ports to JS
+                //SkillBotNames.WaterfallSkillBotJS
             };
 
             var scripts = new List<string>

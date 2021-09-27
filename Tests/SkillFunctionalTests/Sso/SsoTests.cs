@@ -43,6 +43,7 @@ namespace SkillFunctionalTests.Sso
 
             var targetSkills = new List<string>
             {
+                SkillBotNames.ComposerSkillBotDotNet,
                 SkillBotNames.WaterfallSkillBotDotNet,
                 SkillBotNames.WaterfallSkillBotJS,
                 SkillBotNames.WaterfallSkillBotPython

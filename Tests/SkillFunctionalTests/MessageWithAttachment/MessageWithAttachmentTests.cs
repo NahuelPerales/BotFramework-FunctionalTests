@@ -47,12 +47,10 @@ namespace SkillFunctionalTests.MessageWithAttachment
 
             var targetSkills = new List<string>
             {
+                SkillBotNames.ComposerSkillBotDotNet,
                 SkillBotNames.WaterfallSkillBotDotNet,
                 SkillBotNames.WaterfallSkillBotJS,
-                SkillBotNames.WaterfallSkillBotPython,
-
-                // TODO: Enable this when the port to composer is ready
-                //SkillBotNames.ComposerSkillBotDotNet
+                SkillBotNames.WaterfallSkillBotPython
             };
 
             var scripts = new List<string>
