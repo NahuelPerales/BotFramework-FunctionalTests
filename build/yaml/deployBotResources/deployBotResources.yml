@@ -359,7 +359,7 @@ stages:
             version: ${{ parameters.dependenciesVersionDotNetSkills }}
 
         - name: "bffncomposerskillbotdotnet"
-          dependsOn: "Deploy_bffncomposerskillbotdotnet"
+          dependsOn: "Deploy_bffnechoskillbotdotnetv3"
           type: "ComposerSkill"
           displayName: "DotNet Composer Skill Bot"
           appId: $(BFFNCOMPOSERSKILLBOTDOTNETAPPID)
