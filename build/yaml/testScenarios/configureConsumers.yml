@@ -503,6 +503,14 @@ steps:
             group         = "Waterfall"
           }
           @{
+            key           = "ComposerSkillBotDotNet"
+            keyComposer   = "composerSkillBotDotNet" 
+            botName       = "bffncomposerskillbotdotnet"
+            appId         = "${{ parameters.appIds.ComposerSkillBotDotNet }}"
+            resourceGroup = $groups.DotNet
+            group         = "Waterfall"
+          }
+          @{
             key           = "EchoSkillBotJS"
             keyComposer   = "echoSkillBotJs" 
             botName       = "bffnechoskillbotjs"
@@ -573,6 +581,7 @@ steps:
               "WaterfallHostBotPython"
             );
             skills    = @(
+              "ComposerSkillBotDotNet",
               "WaterfallSkillBotDotNet",
               "WaterfallSkillBotJS",
               "WaterfallSkillBotPython"

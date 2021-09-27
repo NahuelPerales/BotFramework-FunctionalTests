@@ -16,6 +16,7 @@ variables:
   # ResourceSuffix: (optional) Alphanumeric suffix to add to the resources' name to avoid collisions.
 
   ## Bots Configuration (Define these variables in Azure)
+  # BffnComposerSkillBotDotNetAppId: (optional) App Id for BffnComposerSkillBotDotNet bot.
   # BffnEchoSkillBotComposerDotNetAppId: (optional) App Id for BffnEchoSkillBotComposerDotNet bot.
   # BffnEchoSkillBotDotNet21AppId: (optional) App Id for BffnEchoSkillBotDotNet21 bot.
   # BffnEchoSkillBotDotNetAppId: (optional) App Id for BffnEchoSkillBotDotNet bot.
