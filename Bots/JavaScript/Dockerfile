@@ -11,7 +11,6 @@ COPY ${folder} .
 
 # Install dependencies
 RUN npm install
-RUN npm audit
 
 # Run the application
 CMD npm start

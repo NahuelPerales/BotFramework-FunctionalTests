@@ -15,8 +15,8 @@
     "url": "https://github.com"
   },
   "dependencies": {
-    "botbuilder": "~4.14.0",
-    "botbuilder-dialogs": "~4.14.0",
+    "botbuilder": "4.16.0-dev.20211019.2d7961c",
+    "botbuilder-dialogs": "4.16.0-dev.20211019.2d7961c",
     "dotenv": "~8.2.0",
     "restify": "~8.5.1"
   },
