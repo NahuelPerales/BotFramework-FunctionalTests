@@ -10,7 +10,7 @@ WORKDIR /app
 COPY ${folder} .
 
 # Install dependencies
-RUN npm install
+RUN npm install --loglevel verbose
 
 # Run the application
 CMD npm start
