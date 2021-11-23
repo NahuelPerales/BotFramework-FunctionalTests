@@ -45,9 +45,8 @@ class DefaultConfig {
     // Restify:
     //   [#1029](https://github.com/restify/node-restify/issues/1029)
     //   [#1274](https://github.com/restify/node-restify/issues/1274)
-    const { NODE_ENV, WEBSITE_HOSTNAME } = process.env;
-    const protocol = NODE_ENV === 'production' ? 'https' : 'http';
-    const url = WEBSITE_HOSTNAME || request.headers.host;
+    const protocol = request.headers['x-appservice-proto'] ?? 'http';
+    const url = process.env.WEBSITE_HOSTNAME ?? request.headers.host;
     this.ServerUrl = `${protocol}://${url}`;
   }
 }

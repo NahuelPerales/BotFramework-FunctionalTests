@@ -233,8 +233,7 @@ server.get('/api/notify', async (req, res) => {
   }
 
   try {
-    // await adapter.continueConversationAsync(config.MicrosoftAppId || '', continuationParameters.conversationReference, continuationParameters.oAuthScope, async context => {
-    await adapter.continueConversationAsync(config.MicrosoftAppId || '', continuationParameters.conversationReference, async context => {
+    await adapter.continueConversationAsync(config.MicrosoftAppId, continuationParameters.conversationReference, continuationParameters.oAuthScope, async context => {
       await context.sendActivity(`Got proactive message for user: ${user}`);
       await bot.run(context);
     });
