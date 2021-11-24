@@ -13,16 +13,17 @@ class SkillsConfiguration {
 
         acc.entries[id] = acc.entries[id] || { id };
 
-        const propName = { appid: 'appId', endpoint: 'skillEndpoint' }[attr.toLowerCase()];
+        const propName = { appid: 'appId', endpoint: 'skillEndpoint', group: 'group' }[attr.toLowerCase()];
         if (!propName) { throw new Error(`[SkillsConfiguration]: Invalid environment variable declaration ${key}`); }
 
         acc.entries[id][propName] = value;
 
         !acc.ids.has(id) && acc.ids.add(id);
         propName === 'appId' && acc.appIds.add(value);
+        propName === 'group' && acc.groups.add(value);
 
         return acc;
-      }, { ids: new Set(), appIds: new Set(), entries: {} });
+      }, { ids: new Set(), appIds: new Set(), groups: new Set(), entries: {} });
 
     this.skillHostEndpoint = process.env.SkillHostEndpoint;
     if (!this.skillHostEndpoint) {
