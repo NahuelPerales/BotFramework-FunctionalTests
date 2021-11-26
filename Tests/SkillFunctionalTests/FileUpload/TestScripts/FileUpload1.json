@@ -133,13 +133,13 @@
     {
       "type": "message",
       "role": "bot",
-      "text": "Select an action to send to **${TargetSkill}***.\n\n   1. Cards\n   2. Proactive\n   3. Auth\n   4. MessageWithAttachment\n   5. Sso\n   6. FileUpload\n   7. Echo\n   8. Delete\n   9. Update",
+      "text": "Select an action to send to **${TargetSkill}**.\n\n   1. Cards\n   2. Proactive\n   3. Auth\n   4. MessageWithAttachment\n   5. Sso\n   6. FileUpload\n   7. Echo\n   8. Delete\n   9. Update",
       "assertions": [
         "type == 'message'",
         "from.role == 'bot'",
         "recipient.role == 'user'",
-        "text == 'Select an action to send to **${TargetSkill}***.\n\n   1. Cards\n   2. Proactive\n   3. Auth\n   4. MessageWithAttachment\n   5. Sso\n   6. FileUpload\n   7. Echo\n   8. Delete\n   9. Update'",
-        "speak == 'Select an action to send to **${TargetSkill}***.'",
+        "text == 'Select an action to send to **${TargetSkill}**.\n\n   1. Cards\n   2. Proactive\n   3. Auth\n   4. MessageWithAttachment\n   5. Sso\n   6. FileUpload\n   7. Echo\n   8. Delete\n   9. Update'",
+        "speak == 'Select an action to send to **${TargetSkill}**.'",
         "inputHint == 'expectingInput'"
       ]
     },
