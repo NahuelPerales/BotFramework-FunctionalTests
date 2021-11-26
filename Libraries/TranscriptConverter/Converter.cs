@@ -173,7 +173,7 @@ namespace TranscriptConverter
 
             var guidMatch = Regex.Match(
                 value,
-                @"([a-z0-9]{8}[-][a-z0-9]{4}[-][a-z0-9]{4}[-][a-z0-9]{4}[-][a-z0-9]{12})",
+                @"^([a-z0-9]{8}[-][a-z0-9]{4}[-][a-z0-9]{4}[-][a-z0-9]{4}[-][a-z0-9]{12})$",
                 RegexOptions.IgnoreCase);
 
             var idPropertyMatch = Regex.Match(
